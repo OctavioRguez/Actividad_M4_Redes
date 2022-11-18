@@ -60,6 +60,7 @@ ip nat inside source static 192.168.0.130 65.100.255.135
 
 ip nat pool LAN-EXTERNO 65.100.255.129 65.100.255.133 netmask 255.255.255.248
 
+no access-list 101
 access-list 101 remark LAN-INTERNO
 access-list 101 deny ip host 192.168.0.145 any
 access-list 101 deny ip host 192.168.0.130 any
