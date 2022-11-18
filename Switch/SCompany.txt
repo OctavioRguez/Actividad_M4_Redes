@@ -1,4 +1,6 @@
-hostname sMty1
+hostname SCompany
+
+no ip domain-lookup
 
 enable secret class
 
@@ -17,9 +19,38 @@ service password-encryption
 banner motd #Prohibido entrar a este
 switch sin autorización !!!#
 
-ip default-gateway 172.16.6.30
+interface gi0/1
+description TRUNK al router
+switchport mode trunk
 
-interface vlan1
-ip address 172.16.6.29 255.255.255.224
-description Esta es la vlan1
-no shutdown
+!!!creación de vlans L2 y nombres
+vlan 10
+name administradores
+
+vlan 20
+name Usuarios
+
+vlan 30
+name Servicios
+
+interface fast0/1
+description vlan 10 host administradores
+switchport mode access
+switchport access vlan 10
+!!!!!portsecurity, no lldp, no cdp,
+
+interface fast0/2
+description vlan 20 host usuarios
+switchport mode access
+switchport access vlan 20
+!!!!!portsecurity, no lldp, no cdp,
+
+interface fast0/3
+description vlan 30 host servicios
+switchport mode access
+switchport access vlan 30
+!!!!!portsecurity, no lldp, no cdp,
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!y todo lo demás
+!!!!
+!!!!password, no ip domain-lookup, ssh, line vty, usuarios, banner
