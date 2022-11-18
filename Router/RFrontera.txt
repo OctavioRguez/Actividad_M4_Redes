@@ -1,4 +1,4 @@
-hostname OficinaMEX
+hostname RFrontera
 
 enable secret class
 
@@ -17,22 +17,40 @@ logging synchronous
 
 service password-encryption
 
-interface gigabit 0/0
-ip address 172.16.0.126 255.255.255.128
-description Esta es la interface G0/0
-no shutdown
+interface G0/0
+description TRUNK
+no shut
+no ip add
 
-interface serial 0/0/1
-ip address 152.78.212.18 255.255.255.252
-description Esta es la interface se0/0/1
-no shutdown
+interface G0/0.10
+description Administradores
+encapsulation dot1q 10
+ip address 192.168.0.142  255.255.255.240
+ip nat inside
 
-ip dhcp excluded-address 172.16.0.1 172.16.0.4
-ip dhcp excluded-address 172.16.0.120 172.16.0.126
+interface G0/0.20
+description Usuarios
+encapsulation dot1q 20
+ip address  192.168.0.126   255.255.255.128
+ip nat inside
 
-ip dhcp pool LAN1
-network 172.16.0.0 255.255.255.128
-default-router 172.16.0.126
+interface G0/0.30
+description Servicios
+encapsulation dot1q 30
+ip address  192.168.0.150  255.255.255.248
+ip nat inside
+
+interface G0/1
+description salida a internet
+ip address 172.25.255.33 255.255.255.252
+no shut
+ip nat outside
+
+ip dhcp pool USUARIOS
+network 192.168.0.0 255.255.255.128
+default-router 192.168.0.126
 dns-server 8.8.8.8
 
-ip route 0.0.0.0 0.0.0.0 S0/0/1
+ip route 0.0.0.0 0.0.0.0 G0/1
+
+ip nat inside source static 192.168.0.145 65.100.255.134
