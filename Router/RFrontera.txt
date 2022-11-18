@@ -1,5 +1,7 @@
 hostname RFrontera
 
+no ip domain-lookup
+
 enable secret class
 
 banner motd #Prohibido entrar a este
