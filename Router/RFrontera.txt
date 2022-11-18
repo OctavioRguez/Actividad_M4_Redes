@@ -27,19 +27,19 @@ no ip add
 interface G0/0.10
 description Administradores
 encapsulation dot1q 10
-ip address 192.168.0.142  255.255.255.240
+ip address 192.168.0.142 255.255.255.240
 ip nat inside
 
 interface G0/0.20
 description Usuarios
 encapsulation dot1q 20
-ip address  192.168.0.126   255.255.255.128
+ip address 192.168.0.126 255.255.255.128
 ip nat inside
 
 interface G0/0.30
 description Servicios
 encapsulation dot1q 30
-ip address  192.168.0.150  255.255.255.248
+ip address 192.168.0.150 255.255.255.248
 ip nat inside
 
 interface G0/1
