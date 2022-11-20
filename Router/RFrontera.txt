@@ -42,8 +42,8 @@ encapsulation dot1q 30
 ip address 192.168.0.150 255.255.255.248
 ip nat inside
 
-interface G0/1
-description salida a internet
+interface GigabitEthernet0/1
+description Salida a internet
 ip address 171.25.255.33 255.255.255.252
 no shut
 ip nat outside
