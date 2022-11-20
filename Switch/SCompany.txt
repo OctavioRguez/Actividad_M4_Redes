@@ -19,13 +19,18 @@ service password-encryption
 banner motd #Prohibido entrar a este
 switch sin autorización !!!#
 
-interface gi0/1
+interface GigabitEthernet0/1
 description TRUNK al router
 switchport mode trunk
+no shut
 
-!!!creación de vlans L2 y nombres
+interface FastEthernet0/10
+description Al switch Usuarios
+switchport mode trunk
+no shut
+
 vlan 10
-name administradores
+name Administradores
 
 vlan 20
 name Usuarios
@@ -34,22 +39,36 @@ vlan 30
 name Servicios
 
 interface fast0/1
-description vlan 10 host administradores
+description vlan 10 Administradores
 switchport mode access
 switchport access vlan 10
-!!!!!portsecurity, no lldp, no cdp,
 
 interface fast0/2
-description vlan 20 host usuarios
+description vlan 10 Administradores
 switchport mode access
-switchport access vlan 20
-!!!!!portsecurity, no lldp, no cdp,
+switchport access vlan 10
 
 interface fast0/3
-description vlan 30 host servicios
+description vlan 10 Administradores
+switchport mode access
+switchport access vlan 10
+
+!!!!!portsecurity, no lldp, no cdp,
+interface fast0/7
+description vlan 20 Usuarios
+switchport mode access
+switchport access vlan 20
+
+!!!!!portsecurity, no lldp, no cdp,
+interface fast0/20
+description vlan 30 Servicios
 switchport mode access
 switchport access vlan 30
-!!!!!portsecurity, no lldp, no cdp,
+
+interface fast0/21
+description vlan 30 Servicios
+switchport mode access
+switchport access vlan 30
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!y todo lo demás
 !!!!
