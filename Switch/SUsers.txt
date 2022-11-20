@@ -1,1 +1,45 @@
-A
+hostname SUsers
+
+no ip domain-lookup
+
+enable secret class
+
+line con 0
+password cisco
+login
+logging synchronous
+
+line vty 0 15
+password cisco
+login
+logging synchronous
+
+service password-encryption
+
+banner motd #Prohibido entrar a este
+switch sin autorización !!!#
+
+
+interface FastEthernet0/10
+description Al switch Company
+switchport mode trunk
+no shut
+
+interface fast0/1
+description vlan 20 Usuarios
+switchport mode access
+switchport access vlan 20
+
+interface fast0/2
+description vlan 20 Usuarios
+switchport mode access
+switchport access vlan 20
+
+interface fast0/24
+description vlan 20 Usuarios
+switchport mode access
+switchport access vlan 20
+
+interface Vlan1
+no ip address
+no shut
